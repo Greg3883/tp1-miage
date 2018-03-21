@@ -11,27 +11,35 @@ import com.acme.mailreader.model.Mail;
  *
  */
 public class MailComparator implements Comparator<Mail> {
+	
+	private static final int PREMIERSUPERIEUR = 1;
+	private static final int PREMIERINFERIEUR = -1;
+	private static final int EGAUX = 0;
 
-	public int compare(Mail obj1, Mail obj2) {
-		if (obj1 == null || obj2 == null) {
-			return 0;
+	public int compare(Mail mail, Mail autreMail) {
+		if (mailVide(mail) && mailVide(autreMail)) {
+			return EGAUX;
 		}
-		if (obj1.isImportant() != obj2.isImportant()) {
-			if (obj1.isImportant() && !obj2.isImportant()) {
+		if (mail.isImportant() != autreMail.isImportant()) {
+			if (mail.isImportant() && !autreMail.isImportant()) {
 				return -1;
 			} else {
 				return 1;
 			}
 		}
-		if (obj1.getStatut() != obj2.getStatut()) {
-			int comp = obj1.getStatut().ordinal()
-					- obj2.getStatut().ordinal();
+		if (mail.getStatut() != autreMail.getStatut()) {
+			int comp = mail.getStatut().ordinal()
+					- autreMail.getStatut().ordinal();
 			return comp > 0 ? -1 : 1;
 		}
-		if (obj1.getSujet() != obj2.getSujet()) {
-			return obj2.getSujet().compareTo(obj1.getSujet());
+		if (mail.getSujet() != autreMail.getSujet()) {
+			return autreMail.getSujet().compareTo(mail.getSujet());
 		}
-		return obj2.getDate().compareTo(obj1.getDate());
+		return autreMail.getDate().compareTo(mail.getDate());
+	}
+	
+	private boolean mailVide(Mail mail) {
+		return mail == null;
 	}
 	
 

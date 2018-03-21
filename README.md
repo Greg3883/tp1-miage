@@ -1,4 +1,4 @@
-# Binome : BEJJAJI & Nabil Choukri
+# Binome : Grégoire BEJJAJI & Nabil CHOUKRI
 
 
 # PrÃ©-requis 
