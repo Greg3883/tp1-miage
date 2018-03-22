@@ -1,5 +1,7 @@
 package com.acme.mailreader.domain;
 
+import java.time.Instant;
+
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -11,8 +13,7 @@ public class MailTest {
 	@Ignore
 	@Test(expected=DateIncorrecteException.class)
 	public final void erreurSiDateAvant1979() throws DateIncorrecteException {
-		//TODO
-				
+		Mail mail = new Mail.Builder("test").date(Instant.parse("1900-04-05T13:33:12Z")).build();
 	}
 
 }
