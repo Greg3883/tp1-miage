@@ -20,24 +20,18 @@ public class MailComparator implements Comparator<Mail> {
 		if (mailVide(mail) && mailVide(autreMail)) {
 			return EGAUX;
 		}
-		if (mail.isImportant() != autreMail.isImportant()) {
-			if (mail.isImportant() && !autreMail.isImportant()) {
-				return -1;
-			} else {
-				return 1;
-			}
+		if (differenceImportance(mail, autreMail)) {
+			return triMailImportance(mail, autreMail);
 		}
-		if (mail.getStatut() != autreMail.getStatut()) {
-			int comp = mail.getStatut().ordinal()
-					- autreMail.getStatut().ordinal();
-			return comp > 0 ? -1 : 1;
+		if (differenceStatut(mail, autreMail)) {
+			return triStatut(mail, autreMail);
 		}
 		if (mail.getSujet() != autreMail.getSujet()) {
 			return autreMail.getSujet().compareTo(mail.getSujet());
 		}
 		return autreMail.getDate().compareTo(mail.getDate());
 	}
-	
+
 	private boolean mailVide(Mail mail) {
 		return mail == null;
 	}
