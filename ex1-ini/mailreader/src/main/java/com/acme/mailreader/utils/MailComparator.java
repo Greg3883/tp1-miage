@@ -7,7 +7,7 @@ import com.acme.mailreader.model.Mail;
 /**
  * Comparateur de mails
  * 
- * Comme on désire afficher les mails les plus importants en premier, l'element le plus grand retourne une valeur négative
+ * Comme on dÃ©sire afficher les mails les plus importants en premier, l'element le plus grand retourne une valeur nÃ©gative
  *
  */
 public class MailComparator implements Comparator<Mail> {
@@ -41,6 +41,29 @@ public class MailComparator implements Comparator<Mail> {
 	private boolean mailVide(Mail mail) {
 		return mail == null;
 	}
+	
+	private boolean differenceImportance(Mail mail, Mail autreMail) {
+		return mail.isImportant() != autreMail.isImportant();
+	}
+	
+	private boolean differenceStatut(Mail mail, Mail autreMail) {
+		return mail.getStatut() != autreMail.getStatut();
+	}
+	
+	private int triMailImportance(Mail mail, Mail autreMail) {
+		if (mail.isImportant() && !autreMail.isImportant()) {
+			return PREMIERINFERIEUR;
+		} else {
+			return PREMIERSUPERIEUR;
+		}
+	}
+	
+	private int triStatut(Mail mail, Mail autreMail) {
+		int comp = mail.getStatut().ordinal()
+				- autreMail.getStatut().ordinal();
+		return comp > 0 ? PREMIERINFERIEUR : PREMIERSUPERIEUR;
+	}
+
 	
 
 }
