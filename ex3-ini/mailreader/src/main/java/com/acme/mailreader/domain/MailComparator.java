@@ -45,6 +45,12 @@ public class MailComparator implements Comparator<Mail> {
 	}
 
 	private int trierParSujet(Mail mail1, Mail mail2) {
+		if (mail1.getSujet() == null && mail2.getSujet() != null) {
+			return PREMIER_PLUS_PETIT;
+		}
+		else if (mail1.getSujet() != null && mail2.getSujet() == null) {
+			return PREMIER_PLUS_GRAND;
+		}
 		return mail1.getSujet().compareTo(mail2.getSujet());
 	}
 
@@ -61,6 +67,9 @@ public class MailComparator implements Comparator<Mail> {
 	}
 
 	private boolean pasLeMemeSujet(Mail mail1, Mail mail2) {
+		if (mail1.getSujet() == null || mail2.getSujet() == null) {
+			return true;
+		}
 		return !mail1.getSujet().equals(mail2.getSujet());
 	}
 

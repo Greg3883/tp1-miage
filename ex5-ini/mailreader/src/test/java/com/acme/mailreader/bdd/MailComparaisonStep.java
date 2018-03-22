@@ -55,8 +55,8 @@ public class MailComparaisonStep {
 		//TODO
 	}
 
-	@Then("^le test d'égalité doit retourner \"([^\"]*)\"$")
-	public void le_test_d_egalité(String resu) throws Throwable {
+	@Then("^le tri doit retourner \"([^\"]*)\"$")
+	public void le_tri_doit_retourner(String resu) throws Throwable {
 		//TODO
 		//assertThat(...);
 	}
